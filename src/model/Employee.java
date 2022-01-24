@@ -1,4 +1,6 @@
-package Model;
+package model;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /*
     Abstract class employee contains the variables of employees with a
@@ -10,19 +12,26 @@ public abstract class Employee {
     private String lastName;
     private String hireDate;
     private String status;
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     // Default contstructor
-    public Employee() {
-        employeeID = 1;
+    public Employee(){
+        employeeID = count.incrementAndGet();
         firstName = "";
         lastName = "";
         hireDate = "";
         status = "";
     }
 
-    // Class constructor stores class variables
-    public Employee(int id, String fName, String lName, String hDate, String st ){
-        employeeID = id;
+    // Overloaded constructor stores class variables
+    public Employee(int id, String fName, String lName, String hDate, String st ) throws CustomException {
+        if(id >= 1){
+            employeeID = id;
+            count.incrementAndGet();
+        }
+        else {
+            throw new CustomException();
+        }
         firstName = fName;
         lastName = lName;
         hireDate = hDate;
@@ -30,34 +39,27 @@ public abstract class Employee {
     }
 
     // getters and setters method
-    public int getEmployeeId() {
+    public int getEmployeeID() {
         return employeeID;
     }
-
-    public void setId(int id) {
-        employeeID = id;
+    public void setEmployeeID(int employeeID) {
+        this.employeeID = employeeID;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getHireDate() {
         return hireDate;
     }
-
     public void setHireDate(String hDate) {
         hireDate = hDate;
     }
@@ -68,4 +70,7 @@ public abstract class Employee {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    // abstract get info method
+    public abstract void getInfo();
 }

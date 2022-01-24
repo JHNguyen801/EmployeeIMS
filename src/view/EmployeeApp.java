@@ -1,9 +1,6 @@
-package View;
+package view;
 
-import Model.EmployeeShow;
-import Model.EmployeeDetail;
-import Model.EmployeeAdd;
-import Model.EmployeeUpdate;
+import model.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,63 +12,43 @@ import java.util.Scanner;
     It calls the displayEmployeeInfo method to print the information stores in the
     class constructor.
  */
-public class EmployeeMSDemo {
-    public static void main(String[] args) {
+public class EmployeeApp {
+    public static void main(String[] args) throws IOException, CustomException {
         EmployeeShow es = new EmployeeShow();
         Scanner select = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
-        int i = 0;
+        char userInput;
 
         mainMenu();
         boolean valid = false;
 
         /*** Initializing loop for Menu Choices ***/
         while (!valid) {
-//            if(!select.hasNextInt()){
-//                System.out.print("\nPlease Enter choice: ");
-//                i = select.nextInt();
-//            }
             try {
-                System.out.print("\nPlease Enter choice: ");
-                i = select.nextInt();
+                System.out.print("\nPlease Enter a number: ");
+                userInput = select.nextLine().charAt(0);
             }
-            catch (Exception e){
-                System.out.print("\nPlease Enter choice: ");
-                i = select.nextInt();
+            catch(StringIndexOutOfBoundsException e){
+                System.out.print("\nPlease enter an input number: ");
+                userInput = select.nextLine().charAt(0);
             }
+
             /** Switch Case Statements **/
-            switch (i) {
-                case 1: {
+            switch (userInput) {
+                case '1': {
                     /** Creating class's object and calling Function using that object **/
-                    EmployeeAdd se = new EmployeeAdd();
+                    EmployeeOutput se = new EmployeeOutput();
                     se.addEmployee();
                     mainMenu();
                     break;
                 }
-                case 2: {
-                    System.out.print("\nPlease Enter Employee's ID: ");
-                    String s = select.nextLine();
-                    try {
-                        es.viewFile(s);
-                        es.displayEmployeeInfo(s);
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
-
+                case '2': {
+                    es.showEmployeeInfo();
                     System.out.print("\nPress Enter to Continue...");
                     select.nextLine();
                     mainMenu();
                     break;
                 }
-
-                case 3: {
-                    EmployeeDetail view = new EmployeeDetail();
-                    view.getInfo();
-                    System.out.print("\nPress Enter to Continue...");
-                    select.nextLine();
-                    mainMenu();
-                    break;
-                }
-                case 4: {
+                case '3': {
                     System.out.print("\nPlease Enter Employee's ID :");
                     String I = select.nextLine();
                     try {
@@ -98,11 +75,14 @@ public class EmployeeMSDemo {
                         System.out.println(e);
                     }
                 }
-                case 5: {
+                case '4': {
+                    System.out.println("\n*****************************************");
+                    System.out.println("\t Program terminated ");
                     System.exit(0);
                 }
                 mainMenu();
-//                displayEmployeeInfo(emp);
+                default:
+                    System.out.println("Wrong input, it must be a number");
             }
         }
     }
@@ -114,21 +94,6 @@ public class EmployeeMSDemo {
         System.out.println("Press 1 : To Add an Employee Details ");
         System.out.println("Press 2 : To See an Employee Details ");
         System.out.println("Press 3 : To Update Employee Details ");
-        System.out.println("Press 4 : To Search an Employee ");
-        System.out.println("Press 5 : To Exit the EIMS Portal ");
+        System.out.println("Press 4 : To Exit the EIMS Portal ");
     }
-        /*
-        Display method shows the list of salaried and hourly employees
-     */
-//    private static void displayEmployeeInfo(Employee[] emp) {
-//        System.out.println("=========Employee Information Sample==========");
-//        for (Employee elem : emp) {
-//            if (elem instanceof SalariedEmployee) {
-//                ((SalariedEmployee)elem).display();
-//                System.out.println();
-//            } else if (elem instanceof HourlyEmployee) {
-//                ((HourlyEmployee) elem).display();
-//            }
-//        }
-//    }
 }
