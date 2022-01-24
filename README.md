@@ -25,5 +25,3 @@ The application should (for the moment) implements abstract class, polymorphism,
 4. Press 4 : To Exit the EIMS Portal
 
 Please Enter choice:
-
-https://www.markdownguide.org/basic-syntax/
