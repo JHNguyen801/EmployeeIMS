@@ -1,10 +1,13 @@
 package model;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /*
     Abstract class employee contains the variables of employees with a
-    default constructor, an alternative constructor, getters and setters methods
+    default constructor, an alternative constructor, getters and setters methods,
+    and an abstract method getInfo()
  */
 public abstract class Employee {
     private int employeeID;
@@ -42,8 +45,8 @@ public abstract class Employee {
     public int getEmployeeID() {
         return employeeID;
     }
-    public void setEmployeeID(int employeeID) {
-        this.employeeID = employeeID;
+    public int setEmployeeID(int id) {
+        return employeeID = id;
     }
     public String getFirstName() {
         return firstName;
@@ -72,5 +75,5 @@ public abstract class Employee {
     }
 
     // abstract get info method
-    public abstract void getInfo();
+    public abstract List<EmployeeDetail> getInfo() throws CustomException, IOException;
 }

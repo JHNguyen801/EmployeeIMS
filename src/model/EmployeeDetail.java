@@ -1,17 +1,24 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/*
+    EmployeeDetail class contains 5 variables and has one method
+    to prompt a user enter data in the input data that stores
+    in an arrayList.
+ */
 public class EmployeeDetail extends Employee{
-    int employeeID;
-    String firstName;
-    String lastName;
-    String hireDate;
-    String status;
-
-    private static final AtomicInteger count = new AtomicInteger(1);
+    private int employeeID;
+    private String firstName;
+    private String lastName;
+    private String hireDate;
+    private String status;
+    static final AtomicInteger count = new AtomicInteger(1);
+    List<EmployeeDetail> employeeList = new ArrayList<>();
 
     // Default Construtor
     public EmployeeDetail(){
@@ -37,78 +44,91 @@ public class EmployeeDetail extends Employee{
         status = st;
     }
 
-    ArrayList<Employee> employeeList = new ArrayList();
-
-    // A method prompt a user to enter input information
+    // A method prompt a user to enter input information and add info to
+    // the arrayList
     @Override
-    public void getInfo()
-    {
-        Scanner sc=new Scanner(System.in);
-//        System.out.print("Enter Employee ID: ");
-//        employeeID = Integer.parseInt(sc.nextLine());
-        System.out.print("Enter First Name: ");
-        firstName=sc.nextLine();
-        System.out.print("Enter Last Name: ");
-        lastName = sc.nextLine();
-        System.out.print("Enter Hired Date: ");
-        hireDate = sc.nextLine();
-        System.out.print("Enter Status: ");
-        status = sc.nextLine();
-        System.out.println("Employee information saved sucessful");
-        for(Employee e : employeeList) {
-            e.setEmployeeID(employeeID);
-            e.setFirstName(firstName);
-            e.setHireDate(lastName);
-            e.setHireDate(hireDate);
-            e.setStatus(status);
+    public List<EmployeeDetail> getInfo() throws CustomException, IOException {
+        List<EmployeeDetail> employeeList = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nHow many employees do you want to add: ");
+        int number = sc.nextInt();
+        for(int i =0; i < number; i++) {
+            System.out.print("\nEnter First Name: ");
+            firstName = sc.next();
+            System.out.print("Enter Last Name: ");
+            lastName = sc.next();
+            System.out.print("Enter Hired Date in the mm/dd/yyyy : ");
+            hireDate = sc.next();
+            System.out.print("Enter Status: ");
+            status = sc.next();
+            System.out.println("***Employee information saved successfully***\n");
+
+            // add input into an arrayList
+            employeeList.add(new EmployeeDetail(employeeID, firstName, lastName, hireDate, status));
         }
+        return employeeList;
+    }
+
+    public String displayEmployeeInfo(){
+        List<EmployeeDetail> employeeList = new ArrayList<>();
+        for(EmployeeDetail staff : employeeList){
+            if(staff instanceof EmployeeDetail){
+                String s;
+                 return s = "Employee ID " + employeeID + "First Name: " +
+                        firstName + "Last Name: " + lastName +
+                        "Hire Date: " + hireDate + "Status: " + status;
+            }
+        }
+        return null;
     }
 
     public int getEmployeeID() {
         return employeeID;
     }
 
-    public void setEmployeeID(int employeeID) {
-        this.employeeID += employeeID;
+    public int setEmployeeID(int id) {
+        employeeID = id;
+        employeeID = count.incrementAndGet();
+        return id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(String fName) {
+        firstName = fName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(String lName) {
+        lastName = lName;
     }
 
     public String getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
-        this.hireDate = hireDate;
+    public void setHireDate(String hDate) {
+        this.hireDate = hDate;
     }
 
     public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(String st) {
+        status = st;
     }
 
-    public ArrayList<Employee> getEmployeeList() {
-        return employeeList;
+    public ArrayList<EmployeeDetail> getEmployeeList() {
+        return (ArrayList<EmployeeDetail>) employeeList;
     }
 
-    public void setEmployeeList(ArrayList<Employee> employeeList) {
+    public void setEmployeeList(ArrayList<EmployeeDetail> employeeList) {
         this.employeeList = employeeList;
     }
 }
