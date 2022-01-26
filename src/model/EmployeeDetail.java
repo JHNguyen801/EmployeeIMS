@@ -18,7 +18,6 @@ public class EmployeeDetail extends Employee{
     private String hireDate;
     private String status;
     static final AtomicInteger count = new AtomicInteger(1);
-    List<EmployeeDetail> employeeList = new ArrayList<>();
 
     // Default Construtor
     public EmployeeDetail(){
@@ -69,19 +68,6 @@ public class EmployeeDetail extends Employee{
         return employeeList;
     }
 
-    public String displayEmployeeInfo(){
-        List<EmployeeDetail> employeeList = new ArrayList<>();
-        for(EmployeeDetail staff : employeeList){
-            if(staff instanceof EmployeeDetail){
-                String s;
-                 return s = "Employee ID " + employeeID + "First Name: " +
-                        firstName + "Last Name: " + lastName +
-                        "Hire Date: " + hireDate + "Status: " + status;
-            }
-        }
-        return null;
-    }
-
     public int getEmployeeID() {
         return employeeID;
     }
@@ -124,11 +110,4 @@ public class EmployeeDetail extends Employee{
         status = st;
     }
 
-    public ArrayList<EmployeeDetail> getEmployeeList() {
-        return (ArrayList<EmployeeDetail>) employeeList;
-    }
-
-    public void setEmployeeList(ArrayList<EmployeeDetail> employeeList) {
-        this.employeeList = employeeList;
-    }
 }

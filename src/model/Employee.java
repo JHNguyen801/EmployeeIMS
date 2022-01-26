@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
     and an abstract method getInfo()
  */
 public abstract class Employee {
+    // class variables
     private int employeeID;
     private String firstName;
     private String lastName;

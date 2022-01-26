@@ -45,14 +45,13 @@ public class EmployeeApp {
                     mainMenu();
                     break;
                 }
-                case '2': {
-//                    String s = null;
-                    es.readDataFromFile();
-                    System.out.print("\nPress Enter to Continue...");
-                    select.nextLine();
-                    mainMenu();
-                    break;
-                }
+//                case '2': {
+//                    es.readDataFromFile();
+//                    System.out.print("\nPress Enter to Continue...");
+//                    select.nextLine();
+//                    mainMenu();
+//                    break;
+//                }
 //                case '3': {
 //                    System.out.print("\nPlease Enter Employee's ID :");
 //                    String I = select.nextLine();
@@ -96,7 +95,7 @@ public class EmployeeApp {
         System.out.println("\t\t  Employee Information Management System");
         System.out.println("\t\t*******************************************");
         System.out.println("Enter 1 : To Add an Employee Details ");
-        System.out.println("Enter 2 : To See an Employee Details ");
+//        System.out.println("Enter 2 : To See an Employee Details ");
 //        System.out.println("Enter 3 : To Update Employee Details ");
         System.out.println("Enter 3 : To Exit the EIMS Portal ");
     }

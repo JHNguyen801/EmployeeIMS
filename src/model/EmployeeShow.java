@@ -4,21 +4,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+    EmployeeShow class read a CSV file that store data in the arrayList.
+    It displays the data information from a CSV file.
+ */
 public class EmployeeShow {
-    ArrayList<EmployeeDetail> employeeList = new ArrayList<>();
-    static EmployeeDetail ed = new EmployeeDetail();
-    public  void viewFile(String s){
-        File file = new File("src/data/employee.csv");
-        try {
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                System.out.println(sc.nextLine());
-            }
-        }
-        catch (FileNotFoundException nf){
-            System.out.println("File not found");
-        }
-    }
+//    ArrayList<EmployeeDetail> employeeList = new ArrayList<>();
+//    static EmployeeDetail ed = new EmployeeDetail();
+//    public  void viewFile(String s){
+//        File file = new File("src/data/employee.csv");
+//        try {
+//            Scanner sc = new Scanner(file);
+//            while (sc.hasNextLine()) {
+//                System.out.println(sc.nextLine());
+//            }
+//        }
+//        catch (FileNotFoundException nf){
+//            System.out.println("File not found");
+//        }
+//    }
 
     // readDataFromFile method read the csv file and display info on the screen
     public static void readDataFromFile(){
@@ -48,7 +52,7 @@ public class EmployeeShow {
         } catch (CustomException e) {
             e.printStackTrace();
         }
-
+        // loop the employee list and display the output from the csv file
         for(int i = 0; i < employeeList.size(); i++){
             System.out.println("EmployeeID: " + employeeList.get(i).getEmployeeID());
             System.out.println("First Name: " + employeeList.get(i).getFirstName());
