@@ -1,4 +1,5 @@
-5,Kat,Bur,01/01/2021,active
-4,Han,Do,01/01/2022,active
-3,Adam,Lee,01/15/2021,active
-3,Jake,Hunt,12/21/2001,inactive
+5,Kat,Bur,01/01/2021,80000.0,active
+4,Han,Do,01/01/2022,65000.0,active
+3,Adam,Lee,01/15/2021,51000.0,active
+2,Jake,Hunt,12/21/2001,75000.0,inactive
+4,Steve,Eve,05/01/2020,68000.0,active
