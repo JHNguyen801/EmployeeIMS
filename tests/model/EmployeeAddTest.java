@@ -3,23 +3,22 @@ package model;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-class EmployeeDetailTest {
+class EmployeeAddTest {
     // Test to see the constructor store data correctly
     @Test
     public void testConstructor() throws EmployeeIDException {
-        EmployeeDetail employeeDetail = new EmployeeDetail(1, "Han", "Solo",
+        EmployeeAdd employeeAdd = new EmployeeAdd(1, "Han", "Solo",
                 "04/01/2015", 50000,"active");
-        Assertions.assertEquals("Han", employeeDetail.getFirstName());
+        Assertions.assertEquals("Han", employeeAdd.getFirstName());
     }
 
     @Test
     void getInfo() throws EmployeeIDException {
-        List<EmployeeDetail> employeeList = new ArrayList<>();
-        EmployeeDetail ed = new EmployeeDetail();
+        List<EmployeeAdd> employeeList = new ArrayList<>();
+        EmployeeAdd ed = new EmployeeAdd();
             int employeeId = 1;
             String firstName = "Jake";
             String lastName = "Lee";
@@ -27,7 +26,7 @@ class EmployeeDetailTest {
             String status = "active";
             double salary = 50000;
 
-            employeeList.add(new EmployeeDetail(employeeId, firstName, lastName, hireDate, salary,status));
+            employeeList.add(new EmployeeAdd(employeeId, firstName, lastName, hireDate, salary,status));
 
             for(int i = 0; i < employeeList.size(); i++){
                 Assertions.assertEquals(employeeList.get(i).getEmployeeID(),employeeId);

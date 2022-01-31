@@ -2,7 +2,6 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
     to prompt a user enter data in the input data that stores
     in an arrayList.
  */
-public class EmployeeDetail extends Employee implements Comparable<EmployeeDetail>{
+public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>{
     private int employeeID;
     private String firstName;
     private String lastName;
@@ -20,10 +19,10 @@ public class EmployeeDetail extends Employee implements Comparable<EmployeeDetai
     private double salary;
     static final AtomicInteger count = new AtomicInteger(1);
 
-    private ArrayList<EmployeeDetail> employeeList;
+    private ArrayList<EmployeeAdd> employeeList;
 
     // Default Construtor
-    public EmployeeDetail(){
+    public EmployeeAdd(){
         employeeID = count.incrementAndGet();
         firstName = "";
         lastName = "";
@@ -33,7 +32,7 @@ public class EmployeeDetail extends Employee implements Comparable<EmployeeDetai
     }
 
     // Overload constructors store id, first name, last name, hire date, and status
-    public EmployeeDetail(int id, String fName, String lName, String hDate, double s, String st ) throws EmployeeIDException {
+    public EmployeeAdd(int id, String fName, String lName, String hDate, double s, String st ) throws EmployeeIDException {
         if(id >= 1){
             employeeID = id;
             count.incrementAndGet();
@@ -55,8 +54,8 @@ public class EmployeeDetail extends Employee implements Comparable<EmployeeDetai
     // A method prompt a user to enter input information and add info to
     // the arrayList
     @Override
-    public ArrayList<EmployeeDetail> getInfo() throws EmployeeIDException, IOException {
-        ArrayList<EmployeeDetail> employeeList = new ArrayList<>();
+    public ArrayList<EmployeeAdd> getInfo() throws EmployeeIDException, IOException {
+        ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.print("\nHow many employees do you want to add: ");
         int number = sc.nextInt();
@@ -74,7 +73,7 @@ public class EmployeeDetail extends Employee implements Comparable<EmployeeDetai
             System.out.println("***Employee information saved successfully***\n");
 
             // add input into an arrayList
-            employeeList.add(new EmployeeDetail(employeeID, firstName, lastName, hireDate, salary, status));
+            employeeList.add(new EmployeeAdd(employeeID, firstName, lastName, hireDate, salary, status));
         }
         return employeeList;
     }
@@ -128,15 +127,13 @@ public class EmployeeDetail extends Employee implements Comparable<EmployeeDetai
         salary = s;
     }
 
-    public ArrayList<EmployeeDetail> getEmployeeDetails() throws EmployeeIDException {
-//            employeeList.add(new EmployeeDetail(employeeID,firstName,
-//                    lastName,hireDate,salary,status));
+    public ArrayList<EmployeeAdd> getEmployeeDetails() throws EmployeeIDException {
         return employeeList;
     }
 
     @Override
-    public int compareTo(EmployeeDetail o) {
-        EmployeeDetail compareEmployee = (EmployeeDetail) o;
+    public int compareTo(EmployeeAdd o) {
+        EmployeeAdd compareEmployee = (EmployeeAdd) o;
         if(this.salary < compareEmployee.salary){
             return -1;
         }

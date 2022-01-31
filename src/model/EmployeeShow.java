@@ -2,7 +2,6 @@ package model;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /*
     EmployeeShow class read a CSV file that store data in the arrayList.
@@ -10,9 +9,9 @@ import java.util.Scanner;
  */
 public class EmployeeShow {
     // readDataFromFile method read the csv file and display info on the screen
-    public static void readDataFromFile(){
-        ArrayList<EmployeeDetail> employeeList = new ArrayList<>();
-        EmployeeDetail employeeDetail = new EmployeeDetail();
+    public static ArrayList<EmployeeShow> readDataFromFile(){
+        ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
+        EmployeeAdd employeeAdd = new EmployeeAdd();
         FileInputStream fstream = null;
         try {
             File file = new File("src/data/employee.csv");
@@ -25,9 +24,9 @@ public class EmployeeShow {
             while ((strline = br.readLine()) != null) {
                 token = strline.split(",");
 
-                employeeDetail = new EmployeeDetail(Integer.parseInt(token[0]), token[1], token[2],
+                employeeAdd = new EmployeeAdd(Integer.parseInt(token[0]), token[1], token[2],
                         token[3], Double.parseDouble(token[4]), token[5]);
-                employeeList.add(employeeDetail);
+                employeeList.add(employeeAdd);
             }
         }
         catch (FileNotFoundException e) {
@@ -54,5 +53,6 @@ public class EmployeeShow {
                     employeeList.get(i).getHireDate(), employeeList.get(i).getSalary(),
                     employeeList.get(i).getStatus(), "\n");
         }
+        return null;
     }
 }

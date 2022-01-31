@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 /*
-    Class EmployeeMSDemo contains the main method that instantiate the class object.
-    It calls the displayEmployeeInfo method to print the information stores in the
-    class constructor.
+    Class EmployeeApp contains the main method that instantiate the class object.
+    It is primary use as the main menu option that allow a user to select a choice.
+    It calls other menu option that invoke the method to do a request.
  */
 public class EmployeeApp {
     public static void main(String[] args) throws IOException, EmployeeIDException, EmployeeIDException {
         EmployeeShow es = new EmployeeShow();
-        EmployeeDetail staff = new EmployeeDetail();
+        EmployeeAdd staff = new EmployeeAdd();
+        EmployeeUpdate eu = new EmployeeUpdate();
         Scanner select = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
         char userInput;
 
@@ -41,54 +42,53 @@ public class EmployeeApp {
                     /** Creating class's object and calling Function using that object **/
                     EmployeeOutput se = new EmployeeOutput();
 //                    EmployeeDetail ed = new EmployeeDetail();
-                    List<EmployeeDetail> employeeList = staff.getInfo();
+                    List<EmployeeAdd> employeeList = staff.getInfo();
                     se.saveOutput(employeeList);
+                    System.out.println("\nPress Enter to Continue...\n");
+                    System.out.println();
                     mainMenu();
                     break;
                 }
                 case '2': {
                     es.readDataFromFile();
-                    System.out.println("\nPress Enter to Continue...");
+                    System.out.println("\nPress Enter to Continue...\n");
+                    System.out.println();
                     mainMenu();
                     break;
                 }
                 case '3': {
                     EmployeeUpdate update = new EmployeeUpdate();
                     System.out.println("Please Enter Employee's ID :");
-                    int I = select.nextInt();
-                    try {
-                        update.updateEmployee(I);
+                    int id = select.nextInt();
+                    if(id == staff.getEmployeeID()){
+                        update.updateEmployee(id);
                     }
-                    catch (Exception e) {
-                        System.out.println(e);
-                    }
-//
-                    System.out.print("\nPlease Enter the detail you want to Update :");
-                    update.updateEmployee(I);
-                    System.out.println("\nPress Enter to Continue...");
+                    System.out.println("\nPress Enter to Continue...\n");
+                    System.out.println();
                     mainMenu();
                     break;
                 }
                 case '4':{
-//                    es.readDataFromFile();
+                    ArrayList<EmployeeAdd> esList = eu.loadData();
                     int rank = 1;
-                    ArrayList<EmployeeDetail> employeeList = staff.getEmployeeDetails();
-                    Ranking.rank(employeeList);
+                    Ranking employeeRank = new Ranking();
+                    employeeRank.rank(esList);
 
-                    System.out.println("\n\t\t\tEMPLOYEE LIST");
-                    System.out.println("*******************************************");
+                    System.out.println("\n\t\t\tEMPLOYEE LIST - Sort from Highest to Lowest Salary");
+                    System.out.println("************************************************************");
                     System.out.printf("%5s %15s %15s %15s %10s %12s","EmployeeID: ",
                             "First Name: ", "Last Name: ", "Hire Date: ",
                             "Salary", "Status:");
-                    for(int i = 0; i < employeeList.size(); i++){
+                    for(int i = 0; i < esList.size(); i++){
                         System.out.println();
                         System.out.format("%5s %15s %20s %15s %12s %12s",
-                                employeeList.get(i).getEmployeeID(), employeeList.get(i).getFirstName(),
-                                employeeList.get(i).getLastName(), employeeList.get(i).getHireDate(),
-                                employeeList.get(i).getSalary(), employeeList.get(i).getStatus());
+                                esList.get(i).getEmployeeID(), esList.get(i).getFirstName(),
+                                esList.get(i).getLastName(), esList.get(i).getHireDate(),
+                                esList.get(i).getSalary(), esList.get(i).getStatus());
                         rank++;
                     }
-                    System.out.print("\nPress Enter to Continue...");
+                    System.out.print("\nPress Enter to Continue...\n");
+                    System.out.println();
                     mainMenu();
                     break;
                 }
@@ -108,10 +108,10 @@ public class EmployeeApp {
         System.out.println("\t\t*******************************************");
         System.out.println("\t\t  Employee Information Management System");
         System.out.println("\t\t*******************************************");
-        System.out.println("Enter 1 : To Add an Employee Details ");
-        System.out.println("Enter 2 : To See an Employee Details ");
-        System.out.println("Enter 3 : To Update Employee Details ");
-        System.out.println("Enter 4 : To Sort Employee by Salary ");
-        System.out.println("Enter 5 : To Exit the EIMS Portal ");
+        System.out.println("Enter 1: To Add an Employee Details ");
+        System.out.println("Enter 2: To See an Employee Details ");
+        System.out.println("Enter 3: To Update Employee Details ");
+        System.out.println("Enter 4: To Sort Employee by Salary ");
+        System.out.println("Enter 5: To Exit the EIMS Portal ");
     }
 }

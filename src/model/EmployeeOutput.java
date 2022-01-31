@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /*
     EmployeeOutput class  has a method takes the arraylist and
@@ -15,12 +13,12 @@ import java.util.Scanner;
 public class EmployeeOutput {
 
     // A method to write a user input into a text file
-    public Boolean saveOutput(List<EmployeeDetail> employeeList) throws EmployeeIDException, IOException {
+    public Boolean saveOutput(List<EmployeeAdd> employeeList) throws EmployeeIDException, IOException {
         boolean status = true;
         File filename = new File("src/data/employee.csv");
 
         // loop the employee list and write to a file
-        for(EmployeeDetail emp : employeeList) {
+        for(EmployeeAdd emp : employeeList) {
             try(FileWriter fw = new FileWriter(filename, true);
                 PrintWriter myWriter = new PrintWriter(fw);) {
                 myWriter.print("\n" + emp.getEmployeeID() + "," + emp.getFirstName() +

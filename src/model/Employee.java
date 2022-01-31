@@ -88,5 +88,6 @@ public abstract class Employee {
     }
 
     // abstract get info method
-    public abstract List<EmployeeDetail> getInfo() throws EmployeeIDException, IOException;
+    public abstract List<EmployeeAdd> getInfo() throws EmployeeIDException, IOException;
+
 }
