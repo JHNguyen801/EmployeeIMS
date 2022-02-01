@@ -56,19 +56,7 @@ public class EmployeeApp {
                     mainMenu();
                     break;
                 }
-                case '3': {
-                    EmployeeUpdate update = new EmployeeUpdate();
-                    System.out.println("Please Enter Employee's ID :");
-                    int id = select.nextInt();
-                    if(id == staff.getEmployeeID()){
-                        update.updateEmployee(id);
-                    }
-                    System.out.println("\nPress Enter to Continue...\n");
-                    System.out.println();
-                    mainMenu();
-                    break;
-                }
-                case '4':{
+                case '3':{
                     ArrayList<EmployeeAdd> esList = eu.loadData();
                     int rank = 1;
                     Ranking employeeRank = new Ranking();
@@ -92,6 +80,18 @@ public class EmployeeApp {
                     mainMenu();
                     break;
                 }
+                case '4': {
+                    EmployeeUpdate update = new EmployeeUpdate();
+                    System.out.println("Please Enter Employee's ID :");
+                    int id = select.nextInt();
+                    if(id == staff.getEmployeeID()){
+                        update.updateEmployee(id);
+                    }
+                    System.out.println("\nPress Enter to Continue...\n");
+                    System.out.println();
+                    mainMenu();
+                    break;
+                }
                 case '5': {
                     System.out.println("\n*****************************************");
                     System.out.println("\t Program terminated ");
@@ -110,8 +110,8 @@ public class EmployeeApp {
         System.out.println("\t\t*******************************************");
         System.out.println("Enter 1: To Add an Employee Details ");
         System.out.println("Enter 2: To See an Employee Details ");
-        System.out.println("Enter 3: To Update Employee Details ");
-        System.out.println("Enter 4: To Sort Employee by Salary ");
+        System.out.println("Enter 3: To Sort Employee by Salary ");
+        System.out.println("Enter 4: To Update Employee Details ");
         System.out.println("Enter 5: To Exit the EIMS Portal ");
     }
 }

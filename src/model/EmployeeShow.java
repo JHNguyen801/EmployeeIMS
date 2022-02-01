@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class EmployeeShow {
     // readDataFromFile method read the csv file and display info on the screen
-    public static ArrayList<EmployeeShow> readDataFromFile(){
+    public static ArrayList<EmployeeAdd> readDataFromFile(){
         ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
         EmployeeAdd employeeAdd = new EmployeeAdd();
         FileInputStream fstream = null;
@@ -53,6 +53,6 @@ public class EmployeeShow {
                     employeeList.get(i).getHireDate(), employeeList.get(i).getSalary(),
                     employeeList.get(i).getStatus(), "\n");
         }
-        return null;
+        return employeeList;
     }
 }

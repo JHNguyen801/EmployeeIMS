@@ -35,7 +35,7 @@ public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>{
     public EmployeeAdd(int id, String fName, String lName, String hDate, double s, String st ) throws EmployeeIDException {
         if(id >= 1){
             employeeID = id;
-            count.incrementAndGet();
+            employeeID = count.incrementAndGet();
         }
         else {
             throw new EmployeeIDException();
