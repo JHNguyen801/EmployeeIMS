@@ -54,14 +54,22 @@ public class EmployeeApp {
                     break;
                 }
                 case '2': {
+<<<<<<< HEAD
                     es.readDataFromFile(employeeList);
+=======
+                    es.readDataFromFile();
+>>>>>>> 911e544d88a2944350a44055768be22ff14dc02e
                     System.out.println("\nPress Enter to Continue...\n");
                     System.out.println();
                     mainMenu();
                     break;
                 }
                 case '3':{
+<<<<<<< HEAD
 //                    ArrayList<EmployeeAdd> esList = eu.loadData(employeeList);
+=======
+                    ArrayList<EmployeeAdd> esList = eu.loadData();
+>>>>>>> 911e544d88a2944350a44055768be22ff14dc02e
                     int rank = 1;
                     Ranking employeeRank = new Ranking();
                     employeeRank.rank(employeeList);
@@ -86,6 +94,7 @@ public class EmployeeApp {
                 }
                 case '4': {
                     EmployeeUpdate update = new EmployeeUpdate();
+<<<<<<< HEAD
                     es.readDataFromFile(employeeList);
                     System.out.print("\nPlease Enter Employee's ID: ");
                     int id = select.nextInt();
@@ -93,6 +102,12 @@ public class EmployeeApp {
                         if(id == employeeList.get(i).getEmployeeID()){
                             update.updateEmployee(employeeList,id);
                         }
+=======
+                    System.out.println("Please Enter Employee's ID :");
+                    int id = select.nextInt();
+                    if(id == staff.getEmployeeID()){
+                        update.updateEmployee(id);
+>>>>>>> 911e544d88a2944350a44055768be22ff14dc02e
                     }
                     System.out.println("\nPress Enter to Continue...\n");
                     System.out.println();
