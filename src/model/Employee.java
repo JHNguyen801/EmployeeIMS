@@ -21,19 +21,19 @@ public abstract class Employee {
 
     // Default contstructor
     public Employee(){
-        employeeID = count.incrementAndGet();
+        employeeID++;
         firstName = "";
         lastName = "";
         hireDate = "";
         status = "";
     }
 
-
     // Overloaded constructor stores class variables
-    public Employee(int id, String fName, String lName, String hDate, double sl, String st ) throws EmployeeIDException {
+    public Employee(int id, String fName, String lName, String hDate, double sl,
+                    String st ) throws EmployeeIDException {
         if(id >= 1){
             employeeID = id;
-            count.incrementAndGet();
+            employeeID++;
         }
         else {
             throw new EmployeeIDException();

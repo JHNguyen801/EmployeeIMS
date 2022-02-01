@@ -13,8 +13,7 @@ public class EmployeeUpdate
     EmployeeShow employeeShow = new EmployeeShow();
     EmployeeAdd ed = new EmployeeAdd();
 
-    public static ArrayList<EmployeeAdd> loadData() {
-        ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
+    public static ArrayList<EmployeeAdd> loadData(ArrayList<EmployeeAdd> employeeList) {
         EmployeeAdd employeeAdd = new EmployeeAdd();
         FileInputStream fstream = null;
         try {
@@ -27,7 +26,6 @@ public class EmployeeUpdate
             // read file line by line
             while ((strline = br.readLine()) != null) {
                 token = strline.split(",");
-
                 employeeAdd = new EmployeeAdd(Integer.parseInt(token[0]), token[1], token[2],
                         token[3], Double.parseDouble(token[4]), token[5]);
                 employeeList.add(employeeAdd);
@@ -44,17 +42,14 @@ public class EmployeeUpdate
         return employeeList;
     }
 
-    public double updateEmployee(int id){
+    public double updateEmployee(ArrayList<EmployeeAdd> employeeList,int id){
         Scanner sc = new Scanner(System.in);
-        loadData();
-        double sortSalary = 0;
-        for(int i = 0; i < employeeList.size(); i++){
-            if(id == ed.getEmployeeID()){
-                System.out.println("Please enter a new salary");
-                sortSalary = sc.nextDouble();
-                ed.setSalary(sortSalary);
-            }
-        }
-        return sortSalary;
+//        loadData(employeeList);
+        double newSalary = 0;
+        System.out.print("Please enter a new salary: ");
+        newSalary = sc.nextDouble();
+        ed.setSalary(newSalary);
+        System.out.println("Salary updated");
+        return newSalary;
     }
 }
