@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CustomExceptionTest {
+class EmployeeIDExceptionTest {
 
     @Test
     void checkId() {
-        EmployeeDetail employeeDetail = new EmployeeDetail();
-        int employId = employeeDetail.setEmployeeID(1);
+        EmployeeAdd employeeAdd = new EmployeeAdd();
+        int employId = employeeAdd.setEmployeeID(1);
         if(employId >= 1) {
             assertEquals(1, employId);
         }

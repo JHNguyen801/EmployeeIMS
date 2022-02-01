@@ -2,7 +2,7 @@ package model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,43 +11,50 @@ import java.util.concurrent.atomic.AtomicInteger;
     to prompt a user enter data in the input data that stores
     in an arrayList.
  */
-public class EmployeeDetail extends Employee{
+public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>{
     private int employeeID;
     private String firstName;
     private String lastName;
     private String hireDate;
     private String status;
+    private double salary;
     static final AtomicInteger count = new AtomicInteger(1);
 
     // Default Construtor
-    public EmployeeDetail(){
+    public EmployeeAdd(){
         employeeID = count.incrementAndGet();
         firstName = "";
         lastName = "";
         hireDate = "";
         status = "";
+        salary = 0;
     }
 
     // Overload constructors store id, first name, last name, hire date, and status
-    public EmployeeDetail(int id, String fName, String lName, String hDate, String st ) throws CustomException {
+    public EmployeeAdd(int id, String fName, String lName, String hDate, double s, String st ) throws EmployeeIDException {
         if(id >= 1){
             employeeID = id;
-            count.incrementAndGet();
+            employeeID = count.incrementAndGet();
         }
         else {
-            throw new CustomException();
+            throw new EmployeeIDException();
         }
         firstName = fName;
         lastName = lName;
         hireDate = hDate;
         status = st;
+        if(salary >= 0){
+            salary = s;
+        }else{
+            System.out.println("Salary must be greater than 0");
+        }
     }
 
     // A method prompt a user to enter input information and add info to
     // the arrayList
     @Override
-    public List<EmployeeDetail> getInfo() throws CustomException, IOException {
-        List<EmployeeDetail> employeeList = new ArrayList<>();
+    public ArrayList<EmployeeAdd> getInfo() throws EmployeeIDException, IOException {
+        ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.print("\nHow many employees do you want to add: ");
         int number = sc.nextInt();
@@ -58,12 +65,26 @@ public class EmployeeDetail extends Employee{
             lastName = sc.next();
             System.out.print("Enter Hired Date in the mm/dd/yyyy : ");
             hireDate = sc.next();
+            try{
+                System.out.print("Enter Salary : ");
+                salary = sc.nextDouble();
+            }
+            catch (InputMismatchException e){
+                System.out.print("Salary information must be digits ");
+                e.printStackTrace();
+                System.out.print("Enter Salary : ");
+                salary = sc.nextDouble();
+            }
             System.out.print("Enter Status: ");
             status = sc.next();
             System.out.println("***Employee information saved successfully***\n");
-
+//            setFirstName(firstName);
+//            setFirstName(lastName);
+//            setHireDate(hireDate);
+//            setSalary(salary);
+//            setStatus(status);
             // add input into an arrayList
-            employeeList.add(new EmployeeDetail(employeeID, firstName, lastName, hireDate, status));
+            employeeList.add(new EmployeeAdd(employeeID, firstName, lastName, hireDate, salary, status));
         }
         return employeeList;
     }
@@ -74,7 +95,6 @@ public class EmployeeDetail extends Employee{
 
     public int setEmployeeID(int id) {
         employeeID = id;
-        employeeID = count.incrementAndGet();
         return id;
     }
 
@@ -98,8 +118,7 @@ public class EmployeeDetail extends Employee{
         return hireDate;
     }
 
-    public void setHireDate(String hDate) {
-        this.hireDate = hDate;
+    public void setHireDate(String hDate) {hireDate = hDate;
     }
 
     public String getStatus() {
@@ -110,4 +129,24 @@ public class EmployeeDetail extends Employee{
         status = st;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double s) {
+        salary = s;
+    }
+
+    @Override
+    public int compareTo(EmployeeAdd o) {
+        EmployeeAdd compareEmployee = (EmployeeAdd) o;
+        if(this.salary < compareEmployee.salary){
+            return -1;
+        }
+        else if(this.salary > compareEmployee.salary){
+            return 1;
+        }else {
+            return  0;
+        }
+    }
 }

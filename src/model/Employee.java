@@ -16,11 +16,12 @@ public abstract class Employee {
     private String lastName;
     private String hireDate;
     private String status;
+    private double salary;
     private static final AtomicInteger count = new AtomicInteger(0);
 
     // Default contstructor
     public Employee(){
-        employeeID = count.incrementAndGet();
+        employeeID++;
         firstName = "";
         lastName = "";
         hireDate = "";
@@ -28,17 +29,23 @@ public abstract class Employee {
     }
 
     // Overloaded constructor stores class variables
-    public Employee(int id, String fName, String lName, String hDate, String st ) throws CustomException {
+    public Employee(int id, String fName, String lName, String hDate, double sl,
+                    String st ) throws EmployeeIDException {
         if(id >= 1){
             employeeID = id;
-            count.incrementAndGet();
+            employeeID++;
         }
         else {
-            throw new CustomException();
+            throw new EmployeeIDException();
         }
         firstName = fName;
         lastName = lName;
         hireDate = hDate;
+        if(salary >= 0){
+            salary = sl;
+        }else{
+            System.out.println("Salary cannot be negative");
+        }
         status = st;
     }
 
@@ -67,14 +74,20 @@ public abstract class Employee {
     public void setHireDate(String hDate) {
         hireDate = hDate;
     }
+    public double getSalary() {
+        return salary;
+    }
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
 
     // abstract get info method
-    public abstract List<EmployeeDetail> getInfo() throws CustomException, IOException;
+    public abstract List<EmployeeAdd> getInfo() throws EmployeeIDException, IOException;
+
 }
