@@ -133,8 +133,9 @@ public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>{
         return salary;
     }
 
-    public void setSalary(double s) {
+    public double setSalary(double s) {
         salary = s;
+        return s;
     }
 
     @Override

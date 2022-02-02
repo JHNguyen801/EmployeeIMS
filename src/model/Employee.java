@@ -77,8 +77,9 @@ public abstract class Employee {
     public double getSalary() {
         return salary;
     }
-    public void setSalary(double salary) {
+    public double setSalary(double salary) {
         this.salary = salary;
+        return salary;
     }
     public String getStatus() {
         return status;

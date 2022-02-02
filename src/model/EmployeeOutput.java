@@ -21,9 +21,9 @@ public class EmployeeOutput {
         for(EmployeeAdd emp : employeeList) {
             try(FileWriter fw = new FileWriter(filename, true);
                 PrintWriter myWriter = new PrintWriter(fw);) {
-                myWriter.print("\n" + emp.getEmployeeID() + "," + emp.getFirstName() +
+                myWriter.print(emp.getEmployeeID() + "," + emp.getFirstName() +
                         "," + emp.getLastName() + "," + emp.getHireDate() + "," +
-                        emp.getSalary() + "," + emp.getStatus());
+                        emp.getSalary() + "," + emp.getStatus() + "\n");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 status = false;
