@@ -19,7 +19,7 @@ public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>, Se
     private String hireDate;
     private String status;
     private double salary;
-    static final AtomicInteger count = new AtomicInteger(1);
+    static final AtomicInteger count = new AtomicInteger(0);
     private ArrayList<EmployeeAdd> employeeAdds;
 
 

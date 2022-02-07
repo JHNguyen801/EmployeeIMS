@@ -19,9 +19,11 @@ The application should (for the moment) implements abstract class, polymorphism,
 		  Employee Information Management System
 		*******************************************
 
-1. Press 1 : To Add an Employee Details
-2. Press 2 : To See an Employee Details
-3. Press 3 : To Update Employee Details
-4. Press 4 : To Exit the EIMS Portal
+1. Press 1: To Add an Employee Details
+2. Press 2: To See an Employee Details
+3. Press 3: To Sort Employee by Salary
+4. Enter 4: To Filter Employee Info
+5. Enter 5: To Update Employee Info
+6. Press 6: To Exit the EIMS Portal
 
 Please Enter choice:

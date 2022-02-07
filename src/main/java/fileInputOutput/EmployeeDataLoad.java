@@ -1,5 +1,7 @@
-package model;
+package fileInputOutput;
 
+import model.EmployeeAdd;
+import model.EmployeeIDException;
 import view.EmployeeApp;
 
 import java.io.*;
@@ -17,7 +19,7 @@ public class EmployeeDataLoad
         EmployeeAdd employeeAdd = new EmployeeAdd();
         FileInputStream fstream = null;
         try {
-            File file = new File("src/data/employee.csv");
+            File file = new File("src/main/java/data/employee.csv");
             fstream = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
             String strline = "";
@@ -45,29 +47,35 @@ public class EmployeeDataLoad
     /*
     This method save the current object EmployeeAdd in a file using serialization
  */
-    public static void serializeEmployee(String filePath, EmployeeAdd employeeAdd) throws
-            FileNotFoundException, IOException
+    public static void serializeEmployee( EmployeeAdd employeeAdd)
     {
-        filePath = "src/data/employee.dat";
+        String filePath = "src/main/java/data/employee.dat";
         File serialize = new File(filePath);
-        ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(serialize));
-        outfile.writeObject(employeeAdd);
-        outfile.close();
-        System.out.println("File successfully saved using Serialization");
+        try(ObjectOutputStream outfile = new ObjectOutputStream(new FileOutputStream(serialize));){
+            outfile.writeObject(employeeAdd);
+            outfile.close();
+            System.out.println("\nFile successfully saved using Serialization");
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /*
     This method read the current object EmployeeAdd in a file using serialization
     */
-    public static EmployeeAdd deserializeEmployee(String filePath) throws FileNotFoundException,
-            IOException, ClassNotFoundException {
-        filePath = "src/data/employee.dat";
+    public static void deserializeEmployee(EmployeeAdd employeeAdd) throws IOException, ClassNotFoundException {
+        String filePath = "src/main/java/data/employee.dat";
         File serialize = new File(filePath);
-        ObjectInputStream inFile = new ObjectInputStream(new FileInputStream(serialize));
-        EmployeeAdd employeeAdd = (EmployeeAdd) inFile.readObject();
-        inFile.close();
-        System.out.println("File successfully loaded using Serialization");
-        return employeeAdd;
+        try(ObjectInputStream inFile = new ObjectInputStream(new FileInputStream(serialize));) {
+            employeeAdd = (EmployeeAdd) inFile.readObject();
+            System.out.println("File successfully loaded using Serialization\n");
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
     }
-
 }
