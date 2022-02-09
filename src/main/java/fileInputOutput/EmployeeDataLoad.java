@@ -45,7 +45,7 @@ public class EmployeeDataLoad
     }
 
     /*
-    This method save the current object EmployeeAdd in a file using serialization
+    This method saves the current object EmployeeAdd in a file using serialization
     */
     public static void serializeEmployee( EmployeeAdd employeeAdd)
     {
@@ -65,9 +65,10 @@ public class EmployeeDataLoad
     }
 
     /*
-    This method read the current object EmployeeAdd in a file using serialization
+    This method reads the current object EmployeeAdd in a file using serialization
     */
-    public static void deserializeEmployee(EmployeeAdd employeeAdd) throws IOException, ClassNotFoundException {
+    public static void deserializeEmployee(EmployeeAdd employeeAdd) throws
+            IOException, ClassNotFoundException {
         String filePath = "src/main/java/data/employee.dat";
         File serialize = new File(filePath);
         try(ObjectInputStream inFile = new ObjectInputStream(new FileInputStream(serialize));) {
