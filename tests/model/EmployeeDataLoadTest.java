@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeDataLoadTest {
-
+    // Test the program to load data from a file
     @Test
     void loadData() throws EmployeeIDException {
         ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
@@ -22,6 +22,7 @@ class EmployeeDataLoadTest {
         Assertions.assertEquals(1,employeeAdd.getEmployeeID());
     }
 
+    // Test the serialize of a binary file
     @Test
     void serializeEmployee() throws EmployeeIDException {
         String filePath = "src/main/java/data/employee.dat";
@@ -31,6 +32,7 @@ class EmployeeDataLoadTest {
         Assertions.assertEquals(1,employeeAdd.getEmployeeID());
     }
 
+    // Test the deserialize of a binary file
     @Test
     void deserializeEmployee() throws EmployeeIDException {
         String filePath = "src/main/java/data/employee.dat";

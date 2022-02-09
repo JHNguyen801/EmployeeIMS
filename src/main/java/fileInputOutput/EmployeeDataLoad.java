@@ -46,7 +46,7 @@ public class EmployeeDataLoad
 
     /*
     This method save the current object EmployeeAdd in a file using serialization
- */
+    */
     public static void serializeEmployee( EmployeeAdd employeeAdd)
     {
         String filePath = "src/main/java/data/employee.dat";
