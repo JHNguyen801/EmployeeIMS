@@ -17,6 +17,7 @@ public class EmployeeUpdate {
         Scanner sc = new Scanner(System.in);
         EmployeeOutput eo = new EmployeeOutput();
         double newSalary = 0;
+//        double updatedSalary = 0;
         do {
             if (newSalary < 0) {
                 System.out.println("You have entered incorrect amount: ");
@@ -26,6 +27,8 @@ public class EmployeeUpdate {
             } else {
                 System.out.print("Please enter a new salary: ");
                 newSalary = sc.nextDouble();
+//                EmployeeAdd employee = employeeList.get(id);
+//                updatedSalary = employee.setSalary(newSalary);
                 employeeList.get(id).setSalary(newSalary);
                 System.out.println("You have entered " + newSalary);
                 break;

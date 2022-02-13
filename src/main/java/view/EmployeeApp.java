@@ -8,17 +8,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 /*
     Class EmployeeApp contains the main method that instantiate the class object.
     It is primary use as the main menu option that allow a user to select a choice.
     It calls other menu option that invoke the method to do a request.
  */
-public class EmployeeApp{
+public class EmployeeApp {
     public static Scanner select = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
     private static EmployeeAdd staff = new EmployeeAdd();
     private static EmployeeShow es = new EmployeeShow();
     private static EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
-    private static EmployeeOutput se = new EmployeeOutput();
 
     public static void main(String[] args) throws IOException, EmployeeIDException, ClassNotFoundException, InterruptedException {
         EmployeeDataLoad eu = new EmployeeDataLoad();
@@ -30,9 +30,9 @@ public class EmployeeApp{
         Thread dLoad = new Thread(new SerializedThread());
         dLoad.start();
         dLoad.join();
-
         // menu selection option
         mainChoice(employeeList);
+
     }
 
     private static void mainChoice(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException {
@@ -63,11 +63,11 @@ public class EmployeeApp{
             /** Switch Case Statements **/
             switch (userInput) {
                 case '1': {
-                    // getInfo method prompts a user to enter input information
+                    /** Creating class's object and calling Function using that object **/
+                    EmployeeOutput se = new EmployeeOutput();
                     employeeList = staff.getInfo();
-                    // create a thread object that implements runnable interface of save output file
-                    Thread inputAndSave = new Thread(new SaveThread());
-                    inputAndSave.start();
+                    Thread saveTread = new Thread(new SaveThread());
+                    saveTread.start();
 //                    se.saveOutput(employeeList);
                     System.out.println("\nPress Enter to Continue...\n");
                     System.out.println();
@@ -196,7 +196,7 @@ public class EmployeeApp{
                 "First Name: ", "Last Name: ", "Hire Date: ",
                 "Salary", "Status:");
         System.out.println();
-        employeeList.parallelStream().filter((emp -> emp.getStatus().equals(status)))
+        employeeList.stream().filter((emp -> emp.getStatus().equals(status)))
                 .forEach(s -> System.out.format("%5s %15s %20s %15s %12s %12s",
                         s.getEmployeeID(),  s.getFirstName(), s.getLastName(),
                         s.getHireDate(), s.getSalary(), s.getStatus()).println());
@@ -221,7 +221,7 @@ public class EmployeeApp{
                 "First Name: ", "Last Name: ", "Hire Date: ",
                 "Salary", "Status:");
         System.out.println();
-        employeeList.parallelStream().filter(emp->emp.getSalary() >= salary)
+        employeeList.stream().filter(emp->emp.getSalary() >= salary)
                 .forEach(s -> System.out.format("%5s %15s %20s %15s %12s %12s",
                         s.getEmployeeID(),  s.getFirstName(), s.getLastName(),
                         s.getHireDate(), s.getSalary(), s.getStatus()).println());
@@ -247,6 +247,5 @@ public class EmployeeApp{
         System.out.println("Enter 2: To filter salary");
         System.out.println("Enter 3: Back to the main menu");
     }
-
 }
 

@@ -22,6 +22,8 @@ public class EmployeeAdd extends Employee implements Comparable<EmployeeAdd>, Se
     static final AtomicInteger count = new AtomicInteger(0);
     private ArrayList<EmployeeAdd> employeeAdds;
 
+
+
     // Default Construtor
     public EmployeeAdd(){
         employeeID = count.incrementAndGet();
