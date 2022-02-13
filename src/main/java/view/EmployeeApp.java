@@ -64,9 +64,9 @@ public class EmployeeApp {
             switch (userInput) {
                 case '1': {
 //                    EmployeeOutput se = new EmployeeOutput();
+//                    // getInfo method prompts a user to enter input information
+//                    employeeList = staff.getInfo();
 
-                    // getInfo method prompts a user to enter input information
-                    employeeList = staff.getInfo();
                     // create a thread object that implements runnable interface of save output file
                     Thread inputAndSave = new Thread(new SaveThread());
                     inputAndSave.start();

@@ -11,8 +11,11 @@ import java.util.ArrayList;
  */
 public class SaveThread implements Runnable{
     EmployeeOutput employeeOutput = new EmployeeOutput();
-    EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
-    ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
+    EmployeeAdd employeeAdd = new EmployeeAdd();
+    ArrayList<EmployeeAdd> employeeList = employeeAdd.getInfo();
+
+    public SaveThread() throws EmployeeIDException, IOException {
+    }
 
     @Override
     public void run() {
