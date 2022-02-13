@@ -18,7 +18,7 @@ public class EmployeeApp {
     public static Scanner select = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
     private static EmployeeAdd staff = new EmployeeAdd();
     private static EmployeeShow es = new EmployeeShow();
-    private static EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
+    private static final EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
 
     public static void main(String[] args) throws IOException, EmployeeIDException, ClassNotFoundException, InterruptedException {
         EmployeeDataLoad eu = new EmployeeDataLoad();
@@ -30,9 +30,9 @@ public class EmployeeApp {
         Thread dLoad = new Thread(new SerializedThread());
         dLoad.start();
         dLoad.join();
+
         // menu selection option
         mainChoice(employeeList);
-
     }
 
     private static void mainChoice(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException {
@@ -63,16 +63,19 @@ public class EmployeeApp {
             /** Switch Case Statements **/
             switch (userInput) {
                 case '1': {
-                    /** Creating class's object and calling Function using that object **/
-                    EmployeeOutput se = new EmployeeOutput();
+//                    EmployeeOutput se = new EmployeeOutput();
+
+                    // getInfo method prompts a user to enter input information
                     employeeList = staff.getInfo();
-                    Thread saveTread = new Thread(new SaveThread());
-                    saveTread.start();
+                    // create a thread object that implements runnable interface of save output file
+                    Thread inputAndSave = new Thread(new SaveThread());
+                    inputAndSave.start();
 //                    se.saveOutput(employeeList);
                     System.out.println("\nPress Enter to Continue...\n");
                     System.out.println();
                     mainMenu();
                     break;
+
                 }
                 case '2': {
                     es.displayEmployeeList(employeeList);

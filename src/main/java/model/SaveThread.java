@@ -1,5 +1,7 @@
 package model;
 
+import fileInputOutput.EmployeeDataLoad;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,8 +10,8 @@ import java.util.ArrayList;
     enters the input from the main() of the application
  */
 public class SaveThread implements Runnable{
-    EmployeeAdd employeeAdd = new EmployeeAdd();
     EmployeeOutput employeeOutput = new EmployeeOutput();
+    EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
     ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
 
     @Override
