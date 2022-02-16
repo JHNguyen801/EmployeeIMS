@@ -32,10 +32,8 @@ public class EmployeeDataLoad
                         token[3], Double.parseDouble(token[4]), token[5]);
                 employeeList.add(employeeAdd);
             }
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NumberFormatException e) {
             System.out.println("File not found");
-        } catch (NumberFormatException e) {
-            System.out.println(e);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (EmployeeIDException e) {
@@ -55,9 +53,6 @@ public class EmployeeDataLoad
             outfile.writeObject(employeeAdd);
             outfile.close();
             System.out.println("\nFile successfully saved using Serialization");
-        }
-        catch (FileNotFoundException e){
-            e.printStackTrace();
         }
         catch (IOException e){
             e.printStackTrace();

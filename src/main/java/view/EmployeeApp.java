@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 /*
     Class EmployeeApp contains the main method that instantiate the class object.
     It is primary use as the main menu option that allow a user to select a choice.
@@ -63,19 +62,12 @@ public class EmployeeApp {
             /** Switch Case Statements **/
             switch (userInput) {
                 case '1': {
-//                    EmployeeOutput se = new EmployeeOutput();
-//                    // getInfo method prompts a user to enter input information
-//                    employeeList = staff.getInfo();
-
                     // create a thread object that implements runnable interface of save output file
-                    Thread inputAndSave = new Thread(new SaveThread());
+                    Thread inputAndSave = new Thread(new AddSaveThread());
                     inputAndSave.start();
-//                    se.saveOutput(employeeList);
                     System.out.println("\nPress Enter to Continue...\n");
-                    System.out.println();
                     mainMenu();
                     break;
-
                 }
                 case '2': {
                     es.displayEmployeeList(employeeList);
@@ -115,7 +107,6 @@ public class EmployeeApp {
                 case '5': {
                     EmployeeUpdate update = new EmployeeUpdate();
                     es.displayEmployeeList(employeeList);
-//                    employeeDataLoad.loadData(employeeList);
                     System.out.print("\nPlease Enter Employee's ID: ");
                     int id = select.nextInt();
                     for(int i = 0; i < employeeList.size(); i++){
@@ -160,12 +151,14 @@ public class EmployeeApp {
             /** Switch Case Statements **/
             switch (userInput) {
                 case '1': {
-                    statusFilter(employeeList);
+                    EmployeeFilter employeeFilter = new EmployeeFilter();
+                    employeeFilter.statusFilter(employeeList);
                     subMenu();
                     break;
                 }
                 case '2': {
-                    salaryFilter(employeeList);
+                    EmployeeFilter employeeFilter = new EmployeeFilter();
+                    employeeFilter.salaryFilter(employeeList);
                     subMenu();
                 break;
                 }
@@ -177,59 +170,7 @@ public class EmployeeApp {
                     subMenu();
                     System.out.println("Wrong input, it must be a number");
             }
-//            mainChoice(employeeList);
         }
-    }
-
-    /*
-    This method prompts a user to enter the status of the employee(s).
-    The method takes the user's input and filters the list of employees
-    per request. It displays the list of employee status info.
-     */
-    public static String statusFilter(ArrayList<EmployeeAdd> employeeList) {
-        String status;
-        System.out.print("Enter the status you want to see (active or inactive): ");
-        status = select.next();
-        select.nextLine();
-        System.out.println();
-        System.out.println("\t\t*******************************************");
-        System.out.println("\t\t  Employee Filter by status");
-        System.out.println("\t\t*******************************************");
-        System.out.printf("%5s %15s %15s %15s %10s %12s","EmployeeID: ",
-                "First Name: ", "Last Name: ", "Hire Date: ",
-                "Salary", "Status:");
-        System.out.println();
-        employeeList.stream().filter((emp -> emp.getStatus().equals(status)))
-                .forEach(s -> System.out.format("%5s %15s %20s %15s %12s %12s",
-                        s.getEmployeeID(),  s.getFirstName(), s.getLastName(),
-                        s.getHireDate(), s.getSalary(), s.getStatus()).println());
-        System.out.println();
-        return  status;
-    }
-
-    /*
-    This method prompts a user to enter the salary of the employee(s).
-    The method takes the user's input and filters the list of employees
-    per request. It displays the list of employee salary info.
- */
-    private static double salaryFilter(ArrayList<EmployeeAdd> employeeList){
-        double salary;
-        System.out.print("Please enter a salary you want to see: ");
-        salary = select.nextDouble();
-        System.out.println();
-        System.out.println("\t\t*******************************************");
-        System.out.println("\t\t  Employee Filter by Salary");
-        System.out.println("\t\t*******************************************");
-        System.out.printf("%5s %15s %15s %15s %10s %12s","EmployeeID: ",
-                "First Name: ", "Last Name: ", "Hire Date: ",
-                "Salary", "Status:");
-        System.out.println();
-        employeeList.stream().filter(emp->emp.getSalary() >= salary)
-                .forEach(s -> System.out.format("%5s %15s %20s %15s %12s %12s",
-                        s.getEmployeeID(),  s.getFirstName(), s.getLastName(),
-                        s.getHireDate(), s.getSalary(), s.getStatus()).println());
-        System.out.println();
-        return salary;
     }
 
     private static void mainMenu() {

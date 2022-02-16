@@ -1,7 +1,5 @@
 package model;
 
-import fileInputOutput.EmployeeDataLoad;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,12 +7,13 @@ import java.util.ArrayList;
     SaveTread implements interfaces to save the file after the user
     enters the input from the main() of the application
  */
-public class SaveThread implements Runnable{
+public class AddSaveThread implements Runnable{
     EmployeeOutput employeeOutput = new EmployeeOutput();
     EmployeeAdd employeeAdd = new EmployeeAdd();
     ArrayList<EmployeeAdd> employeeList = employeeAdd.getInfo();
 
-    public SaveThread() throws EmployeeIDException, IOException {
+    // A default constructor
+    public AddSaveThread() throws EmployeeIDException, IOException {
     }
 
     @Override
