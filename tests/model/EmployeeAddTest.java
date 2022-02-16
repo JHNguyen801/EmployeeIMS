@@ -29,7 +29,6 @@ class EmployeeAddTest {
             employeeList.add(new EmployeeAdd(employeeId, firstName, lastName, hireDate, salary,status));
 
             for(int i = 0; i < employeeList.size(); i++){
-                Assertions.assertEquals(employeeList.get(i).getEmployeeID(),employeeId);
                 Assertions.assertEquals(employeeList.get(i).getFirstName(),firstName);
                 Assertions.assertEquals(employeeList.get(i).getLastName(),lastName);
                 Assertions.assertEquals(employeeList.get(i).getHireDate(),hireDate);
