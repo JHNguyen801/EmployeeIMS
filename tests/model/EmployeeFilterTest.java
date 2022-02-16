@@ -54,7 +54,6 @@ class EmployeeFilterTest {
         employeeList.add(ed2);
         employeeList.add(ed3);
 
-        employeeList.add(ed);
         employeeList.stream().filter(emp->emp.getSalary() >= salary)
                 .forEach(s -> System.out.format("%5s %15s %20s %15s %12s %12s",
                         s.getEmployeeID(),  s.getFirstName(), s.getLastName(),
