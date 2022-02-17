@@ -10,8 +10,16 @@ The project can be run from the class EmployeeApp main method. The program initi
 prompts a user to select the option from the main menu. A user enters an employee information and view an 
 employee.
 
-The application should implement abstract class, polymorphism, inheritance, Stream, Lambdas, and Concurrency.
-In addition, the JUnit test validates the methods of classes to make sure the application is functioning.
+### Project Requirements
+The application should implement advanced Java concepts, which include in the following concepts:
+1. Abstract Class, Polymorphism, Inheritance
+2. Exception Handling
+3. Generic Class & Collection
+4. Write Input/Output of Binary File
+5. Lambdas and Streams
+6. Concurrency(Thread/Runnable)
+7. DB Connection/SQL Lite - store/read data from a database
+8. JUnit Testing
 
 ### Sample of the output program:
 
