@@ -1,10 +1,12 @@
 package view;
 
+import fileInputOutput.DataConnection;
 import fileInputOutput.EmployeeDataLoad;
 import model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class EmployeeApp {
     private static EmployeeShow es = new EmployeeShow();
     private static final EmployeeDataLoad employeeDataLoad = new EmployeeDataLoad();
 
-    public static void main(String[] args) throws IOException, EmployeeIDException, ClassNotFoundException, InterruptedException {
+    public static void main(String[] args) throws IOException, EmployeeIDException, ClassNotFoundException, InterruptedException, SQLException {
         EmployeeDataLoad eu = new EmployeeDataLoad();
         ArrayList<EmployeeAdd> employeeList = new ArrayList<>();
         // load csv file
@@ -34,7 +36,7 @@ public class EmployeeApp {
         mainChoice(employeeList);
     }
 
-    private static void mainChoice(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException {
+    private static void mainChoice(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException, SQLException {
         System.out.println("\t\t*******************************************");
         System.out.println("\t\t  Employee Information Management System");
         System.out.println("\t\t*******************************************");
@@ -119,7 +121,11 @@ public class EmployeeApp {
                     mainMenu();
                     break;
                 }
-                case '6': {
+                case '6':{
+                    DBMenu();
+                    break;
+                }
+                case '7': {
                     EmployeeDataLoad.serializeEmployee(staff);
                     System.out.println("\n*****************************************");
                     System.out.println("\t Program terminated ");
@@ -132,7 +138,47 @@ public class EmployeeApp {
         }
     }
 
-    private static void employeeFilter(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException {
+    public static void DBMenu() throws SQLException {
+        boolean out = false;
+        char userInput;
+
+        DataConnection dbh = null;
+        try {
+            dbh = new DataConnection("EmployeeDB.db");
+        } catch (SQLException e2) {
+            e2.printStackTrace();
+        }
+
+        while (!out) { // Menu loop
+            System.out.println("DB Menu\n"
+                    + "=========\n"
+                    + "What do you want to do?\n"
+                    + "1. Display employees in order\n"
+                    + "4. Quit\n");
+
+            userInput = select.nextLine().charAt(0);
+
+            switch (userInput) {
+                case '1':
+                    try {
+                        dbh.displayStatusOrder("status");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case '2':
+                {
+                    dbh.displayJoin();
+                }
+                default:
+                    System.out.println("Wrong input");
+            }
+
+        }// Loop end
+    }
+
+
+    private static void employeeFilter(ArrayList<EmployeeAdd> employeeList) throws EmployeeIDException, IOException, ClassNotFoundException, SQLException {
         boolean valid = false;
         char userInput = 0;
         System.out.println("\n\t\t  Filter Submenu");
@@ -173,7 +219,9 @@ public class EmployeeApp {
         }
     }
 
-    private static void mainMenu() {
+
+
+        private static void mainMenu() {
         System.out.println("\t\t*******************************************");
         System.out.println("\t\t  Employee Information Management System");
         System.out.println("\t\t*******************************************");
