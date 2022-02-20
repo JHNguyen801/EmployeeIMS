@@ -93,11 +93,9 @@ public class DataConnection {
 
     public void displayStatusOrder(String orderInput) throws SQLException {
 
-        String query = "SELECT employeeID, fName, lName, hireDate, salary, status"
-                + "FROM Employee " +
-                "FULL JOIN Salary" +
-                "ON Employee.employeeID = Salary.employeeID"
-                + orderInput;
+        String query = "SELECT employeeID, fName, lName, hireDate, salary, status " +
+                "FROM Employee " +
+                "FULL JOIN Salary ON Employee.employeeID = Salary.employeeID" + orderInput;
         if (orderInput == "status")
             query += "ORDER BY status ASC";
 
@@ -132,11 +130,10 @@ public class DataConnection {
 
     public void displayJoin() throws SQLException {
         displayAggregate();
-        String query = "SELECT employeeID, fName, lName, hireDate, salary, status"
-                + "FROM Employee " +
-                "FULL JOIN Salary" +
-                "ON Employee.employeeID = Salary.employeeID"+
-                "ORDER BY fName, lName";
+        String query = "SELECT employeeID, fName, lName, salary, status " +
+                "FROM Employee " +
+                "FULLY JOIN Salary " +
+                "ON Employee.employeeID = Salary.employeeID ORDER BY fName, lName";
 
         PreparedStatement prepared = this.conn.prepareStatement(query);
 
