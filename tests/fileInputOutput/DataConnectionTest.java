@@ -16,17 +16,6 @@ class DataConnectionTest {
     DataConnectionTest() throws SQLException {
     }
 
-//    @BeforeAll
-//    static void setUpBeforeClass() {
-//        try {
-//            DataConnection db = new DataConnection("metcs622_soccerjava_test.db");
-//            db.close();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            fail("Cannot connect to DB");
-//        }
-//    }
-
     @Test
     void insertData() throws SQLException {
         String connectionURL = "EmployeeDB.db";
