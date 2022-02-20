@@ -90,91 +90,89 @@ class DataConnectionTest {
     }
 
 
-//    @Test
-//    void displayStatusOrder(String orderInput) throws SQLException {
-//        String query = "SELECT employeeID, fName, lName, hireDate, salary, status"
-//                + "FROM Employee" +
-//                "FULL JOIN Salary" +
-//                "ON Employee.employeeID = Salary.employeeID" + orderInput;
-//        if (orderInput == "status")
-//            query += "ORDER BY status ASC";
-//
-//        PreparedStatement prepared = this.conn.prepareStatement(query);
-//
-//        ResultSet rs = prepared.executeQuery();
-//        ResultSetMetaData resultMeta = rs.getMetaData();
-//
-//        System.out.println("\n**********************************");
-//        //Display columns
-//        System.out.print("*");
-//        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-//            System.out.print("\t"
-//                    + resultMeta.getColumnName(i).toUpperCase()
-//                    + "\t *");
-//
-//        System.out.println("\n**********************************");
-//
-//        while(rs.next()) {
-//            for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-//                System.out.print("\t"
-//                        + rs.getObject(i).toString()
-//                        + "\t |");
-//
-//            System.out.println("\n---------------------------------");
-//        }
-//
-//        rs.close();
-//        prepared.close();
-//    }
+    @Test
+    void displayStatusOrder(String orderInput) throws SQLException {
+        String query = "SELECT employeeID, fName, lName, hireDate, salary, status " +
+                "FROM Employee " +
+                "FULL JOIN Salary ON Employee.employeeID = Salary.employeeID" + orderInput;
+        if (orderInput == "status")
+            query += "ORDER BY status ASC";
 
-//    @Test
-//    void displayJoin() throws SQLException {
-//        displayAggregate();
-//        String query = "SELECT employeeID, fName, lName, salary, status"
-//                + " Employee " +
-//                "FULL JOIN Salary" +
-//                "ON Employee.employeeID = Salary.employeeID"+
-//                "ORDER BY fName, lName";
-//
-//        PreparedStatement prepared = this.conn.prepareStatement(query);
-//
-//        ResultSet rs = prepared.executeQuery();
-//        ResultSetMetaData resultMeta = rs.getMetaData();
-//
-//        System.out.println("\n**********************************");
-//        //Display columns
-//        System.out.print("*");
-//        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-//            System.out.print("\t"
-//                    + resultMeta.getColumnName(i).toUpperCase()
-//                    + "\t *");
-//
-//        System.out.println("\n**********************************");
-//
-//        while(rs.next()) {
-//            for(int i = 1; i <= resultMeta.getColumnCount(); i++)
-//                System.out.print("\t"
-//                        + rs.getObject(i).toString()
-//                        + "\t |");
-//
-//            System.out.println("\n---------------------------------");
-//        }
-//        rs.close();
-//        prepared.close();
-//
-//    }
+        PreparedStatement prepared = this.conn.prepareStatement(query);
 
-//    @Test
-//    void displayAggregate() throws SQLException {
-//
-//        String query = "SELECT COUNT(employeeID) AS totalEmployee, min(salary) as minimumSalary," +
-//                "max(salary), avg(salary)\n" +
-//                "FROM salary";
-//        PreparedStatement prepared = this.conn.prepareStatement(query);
-//        ResultSet rs = prepared.executeQuery();
-//        rs.close();
-//        prepared.close();
-//    }
+        ResultSet rs = prepared.executeQuery();
+        ResultSetMetaData resultMeta = rs.getMetaData();
+
+        System.out.println("\n**********************************");
+        //Display columns
+        System.out.print("*");
+        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
+            System.out.print("\t"
+                    + resultMeta.getColumnName(i).toUpperCase()
+                    + "\t *");
+
+        System.out.println("\n**********************************");
+
+        while(rs.next()) {
+            for(int i = 1; i <= resultMeta.getColumnCount(); i++)
+                System.out.print("\t"
+                        + rs.getObject(i).toString()
+                        + "\t |");
+
+            System.out.println("\n---------------------------------");
+        }
+
+        rs.close();
+        prepared.close();
+    }
+
+    @Test
+    void displayJoin() throws SQLException {
+        displayAggregate();
+        String query = "SELECT employeeID, fName, lName, salary, status " +
+                "FROM Employee " +
+                "FULLY JOIN Salary " +
+                "ON Employee.employeeID = Salary.employeeID ORDER BY fName, lName";
+
+        PreparedStatement prepared = this.conn.prepareStatement(query);
+
+        ResultSet rs = prepared.executeQuery();
+        ResultSetMetaData resultMeta = rs.getMetaData();
+
+        System.out.println("\n**********************************");
+        //Display columns
+        System.out.print("*");
+        for(int i = 1; i <= resultMeta.getColumnCount(); i++)
+            System.out.print("\t"
+                    + resultMeta.getColumnName(i).toUpperCase()
+                    + "\t *");
+
+        System.out.println("\n**********************************");
+
+        while(rs.next()) {
+            for(int i = 1; i <= resultMeta.getColumnCount(); i++)
+                System.out.print("\t"
+                        + rs.getObject(i).toString()
+                        + "\t |");
+
+            System.out.println("\n---------------------------------");
+        }
+        rs.close();
+        prepared.close();
+
+    }
+
+    @Test
+    void displayAggregate() throws SQLException {
+
+        String query = "SELECT COUNT(employeeID) AS totalEmployee, min(salary) as minimumSalary," +
+                "max(salary), avg(salary)\n" +
+                "FROM salary";
+        PreparedStatement prepared = this.conn.prepareStatement(query);
+        ResultSet rs = prepared.executeQuery();
+        rs.close();
+        prepared.close();
+    }
 
     /**
      * Close the connection to avoid any
